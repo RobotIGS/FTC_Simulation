@@ -10,60 +10,66 @@ public class TestAutonome extends BaseAutonomous {
 
     @Override
     public void run() {
+        //hwMap.servo_zweite_achse.setPosition(hwMap.servo_zweite_achse_eingefahren);
+        //hwMap.servo_kralle.setPosition(hwMap.kralle_zu);
+        //hwMap.motor_erste_achse.setTargetPosition(hwMap.motor_erste_achse_unten);
+        //hwMap.servo_kralle_drehen.setPosition(hwMap.kralle_drehen_hinten);
+
         hwMap.robot.navi.setKeepRotation(true);
 
-        hwMap.robot.drive(new Position2D(20, 0));
+        hwMap.robot.drive(new Position2D(35, 0));
+        schleife();
 
-        while (opModeIsActive() && hwMap.navi.getDriving()) {
-            hwMap.robot.step();
-            telemetry.addLine(hwMap.navi.debug());
-            telemetry.addLine(hwMap.chassis.debug());
-            telemetry.update();
+        hwMap.robot.rotate(-90);
+        schleife();
 
-        }
-
-        hwMap.robot.rotate(90);
-
-        while (opModeIsActive() && hwMap.navi.getDriving()) {
-            hwMap.robot.step();
-            telemetry.addLine(hwMap.navi.debug());
-            telemetry.addLine(hwMap.chassis.debug());
-            telemetry.update();
-        }
-        hwMap.robot.drive(new Position2D(60, 0));
-
-        while (opModeIsActive() && hwMap.navi.getDriving()) {
-            hwMap.robot.step();
-            telemetry.addLine(hwMap.navi.debug());
-            telemetry.addLine(hwMap.chassis.debug());
-            telemetry.update();
-        }
+        //hwMap.motor_erste_achse.setTargetPosition(hwMap.motor_erste_achse_oben);
+        //hwMap.servo_zweite_achse.setPosition(hwMap.servo_zweite_achse_ausgefahren);
+        hwMap.robot.drive(new Position2D(-85, 0));
+        schleife();
 
         hwMap.robot.rotate(45);
+        schleife();
+
+        //hwMap.servo_kralle.setPosition(hwMap.kralle_offen);
+        //sleep(10);
+
+//        hwMap.motor_erste_achse.setTargetPosition(hwMap.motor_erste_achse_unten);
+//        hwMap.servo_kralle_drehen.setPosition(hwMap.kralle_drehen_vorne);
+        hwMap.robot.rotate(45);
+        schleife();
+
+        hwMap.robot.drive(new Position2D(45, 25));
+        schleife();
+
+//        hwMap.servo_kralle.setPosition(hwMap.kralle_zu);
+//        sleep(10);
+//        hwMap.motor_erste_achse.setTargetPosition(hwMap.motor_erste_achse_oben);
+//        hwMap.servo_kralle_drehen.setPosition(hwMap.kralle_drehen_hinten);
+        hwMap.robot.rotate(-45);
+        schleife();
+
+        hwMap.robot.drive(new Position2D(-50, 25));
+        schleife();
+//      hwMap.servo_kralle.setPosition(hwMap.kralle_offen);
+//        sleep(10);
+
+//        hwMap.motor_erste_achse.setTargetPosition(hwMap.motor_erste_achse_unten);
+//        hwMap.servo_zweite_achse.setPosition(hwMap.servo_zweite_achse_eingefahren);
+
+        hwMap.robot.rotate(-45);
+        schleife();
+
+        hwMap.robot.drive(new Position2D(210, -95));
+        schleife();
+    }
+
+    void schleife() {
         while (opModeIsActive() && hwMap.navi.getDriving()) {
             hwMap.robot.step();
             telemetry.addLine(hwMap.navi.debug());
             telemetry.addLine(hwMap.chassis.debug());
             telemetry.update();
         }
-
-
-//        for (int i = 0; i<4; i++) {
-//            hwMap.robot.drive(new Position2D(-100, yTravel));
-//            while (opModeIsActive() && hwMap.navi.getDriving()) {
-//                hwMap.robot.step();
-//                telemetry.addLine(hwMap.navi.debug());
-//                telemetry.addLine(hwMap.chassis.debug());
-//                telemetry.update();
-//            }
-//            yTravel = yTravel + 20;
-//            hwMap.robot.drive(new Position2D(100, -yTravel));
-//            while (opModeIsActive() && hwMap.navi.getDriving()) {
-//                hwMap.robot.step();
-//                telemetry.addLine(hwMap.navi.debug());
-//                telemetry.addLine(hwMap.chassis.debug());
-//                telemetry.update();
-//            }
-//        }
     }
 }
